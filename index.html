@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- <script type="text/javascript" src="html2canvas.min.js"></script> -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.5.3/jspdf.min.js"></script>
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script> -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/0.4.1/html2canvas.min.js"></script>
+  <link rel="stylesheet" href="index.css">
+  <title>Document</title>
+</head>
+<body>
+  <div class="details">
+    <div class='detailsAligin'>
+      <div class="markInfo">
+        <div class=''>
+            <label >Name:</label>
+            <input id='nameField' type='text' ></input>
+        </div>
+        <div class='localStorageSection'>
+          <div class=''>
+            <label >Grade:</label>
+            <input style="width:70px;" id='gradeField' type='text' ></input>
+          </div>
+          <div class=''>
+            <label >Section:</label>
+            <input style="width:58px;" id='sectionField' type='text' ></input>
+          </div>
+          <div class=''>
+            <label >Exam name:</label>
+            <input id='examNameField' type='text' ></input>
+          </div>
+          <button  id='resetButton' onclick="localStorage()" type='button'>Reset</button>
+        </div>
+        <div class=''>
+          <label >TAMIL:</label>
+          <input style="width:95px;" id='tamilField' type='text' ></input>
+        </div>
+        <div class=''>
+          <label >ENGLISH:</label>
+          <input id='englishField' type='text' ></input>
+        </div>
+        <div class=''>
+          <label >MATHS:</label>
+          <input style="width:90px;" id='mathsField' type='text' ></input>
+        </div>
+        <div class=''>
+          <label >PHYSICS:</label>
+          <input style="width:78px;" id='physicsField' type='text' ></input>
+        </div>
+        <div class=''>
+          <label >CHEMISTRY:</label>
+          <input style="width: 45px;" id='chemistryField' type='text' ></input>
+        </div>
+        <div class=''>
+          <label >BIOLOGY:</label>
+          <input id='biologyField' type='text' ></input>
+        </div>
+        <div class=''>
+            <button id='subButton' onclick="uniqueMarkAssign()" type='button'>Submit</button>
+        </div>
+    </div>
+
+<!-- Average mark section -->
+    <!-- <div>
+      <div class="AverageMarkInfo">
+        <h4><u>Average</u></h4>
+        <div class=''>
+          <label >TAMIL:</label>
+          <input id='' type='text' ></input>
+        </div>
+        <div class=''>
+          <label >ENGLISH:</label>
+          <input id='' type='text' ></input>
+        </div>
+        <div class=''>
+          <label >MATHS:</label>
+          <input id='' type='text' ></input>
+        </div>
+        <div class=''>
+          <label >PHYSICS:</label>
+          <input id='' type='text' ></input>
+        </div>
+        <div class=''>
+          <label >CHEMISTRY:</label>
+          <input id='' type='text' ></input>
+        </div>
+        <div class=''>
+          <label >BIOLOGY:</label>
+          <input id='' type='text' ></input>
+        </div>
+        <div class=''>
+          <label >TOTAL(%):</label>
+          <input id='' type='text' ></input>
+        </div>
+        <div class='form-sub'>
+            <button id='' type='button'>Set Average Mark</button>
+        </div>
+      </div>
+    </div> -->
+  
+    </div>
+  </div>
+
+  <div id="content">
+    <div>
+    <!-- school address and logo-->
+    <hr class="schoolAddressHr">
+    <div class="schoolAddress"> 
+      <div class="imgAlign">
+       <img src="./assets/kesavLogo.png" alt="logo">
+      </div>
+      <div>
+        <h2 style="color: blue;">KESHAV VIDHYA MANDIR MATRIC HSS</h2>
+        <p>Address:</p>
+        <p>Mobile: 9965225660 Email: keshavvidhyamandirschool@gmail.com</p>
+      </div>
+    </div>
+    <hr class="schoolAddressHr">
+    <!-- end -->
+    <!-- student info -->
+    <div class="studentInfoBlock">
+      <div class="studentInfoAligin">
+        <div>
+          <h4>Name: <span id="resultNameField"></span></h4>
+          <h4>Grade: <span id="resultGradeField"></span> </h4>
+          <h4>Section: <span id="resultSectionField"></span></h4>
+        </div>
+        <div>
+          <h4>Exam Name : <span id="resultExamNameField"></span></h4>
+        </div>
+      </div>
+      <div class="reportCard">
+        <p>Progress Report Card & Perfomance Graph</p>
+      </div>
+      <hr class="studentInfoBlockHr">
+    </div>
+    <!-- end -->
+    <!-- Student Mark Details & Graph  -->
+    <div>
+      <h2 class="graphTitleStyle">Student Mark Details & Graph </h2>
+      <!-- table -->
+      <div>
+        <table>
+          <tr>
+            <th>SubjectName</th>
+            <th>StudentMark</th>
+            <th>Average</th>
+            <th>Grade</th>
+          </tr>
+          <tr>
+            <td>TAMIL</td>
+            <td><span id="resultTamilField"></span></td>
+            <td>86</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>ENGLISH</td>
+            <td><span id="resultEnglishField"></span></td>
+            <td>82</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>MATHS</td>
+            <td><span id="resultMathsField"></span></td>
+            <td>60</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>PHYSICS</td>
+            <td><span id="resultPhysicsField"></span></td>
+            <td>42</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>CHEMISTRY</td>
+            <td><span id="resultChemistryField"></span></td>
+            <td>77</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>BIOLOGY</td>
+            <td><span id="resultBiologyField"></span></td>
+            <td>82</td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>Total(%)</td>
+            <td><span id="resultTotalField"></span></td>
+            <td>71</td>
+            <td></td>
+          </tr>
+        </table>
+      </div>
+      <!-- graph -->
+      <div>
+        <canvas id="myChart" style="width:100%;max-width:900px"></canvas>
+      </div>
+      <div>
+        <p></p>
+      </div>
+      <div>
+        <button id="pdf">generate PDF</button>
+      </div>
+    </div>
+  </div>
+  </div>
+</body>
+<script>
+
+
+function localStorage() {
+  var grade = document.getElementById("gradeField").value;
+  var section = document.getElementById("sectionField").value;
+  var examName = document.getElementById("examNameField").value;
+  console.log(grade,section,examName)
+  localStorage.setItem("Grade",grade)
+
+}
+
+function uniqueMarkAssign() {
+  var name = document.getElementById("nameField").value;
+  var grade = document.getElementById("gradeField").value;
+  var section = document.getElementById("sectionField").value;
+  var examName = document.getElementById("examNameField").value;
+  var tamil = document.getElementById("tamilField").value;
+  var english = document.getElementById("englishField").value;
+  var maths = document.getElementById("mathsField").value;
+  var physics = document.getElementById("physicsField").value;
+  var chemistry = document.getElementById("chemistryField").value;
+  var biology = document.getElementById("biologyField").value;
+
+  document.getElementById("resultNameField").innerHTML = name
+  document.getElementById("resultGradeField").innerHTML = grade
+  document.getElementById("resultSectionField").innerHTML = section
+  document.getElementById("resultExamNameField").innerHTML = examName
+  document.getElementById("resultTamilField").innerHTML = tamil
+  document.getElementById("resultEnglishField").innerHTML = english
+  document.getElementById("resultMathsField").innerHTML = maths
+  document.getElementById("resultPhysicsField").innerHTML = physics
+  document.getElementById("resultChemistryField").innerHTML = chemistry
+  document.getElementById("resultBiologyField").innerHTML = biology 
+  // console.log(name,grade,section,examName,tamil,english,maths,physics,chemistry,biology)
+ 
+  // graph generation
+  var total = Number(tamil)+Number(english)+Number(maths)+Number(physics)+Number(chemistry)+Number(biology);
+  document.getElementById("resultTotalField").innerHTML = total
+  var xValues = ["TAMIL", "ENGLISH", "MATHS", "PHYSICS", "CHEMISTRY", "BIOLOGY", "TOTAL(%)"];
+  var yValues = [tamil, english, maths,physics,chemistry, biology, total];
+  var average = [86, 82, 60, 42, 77, 82, 71]
+  var barColors = ["orange", "orange","orange","orange","orange", "orange","orange"];
+  var barColors2 = ["blue","blue","blue","blue","blue","blue","blue"]
+  new Chart("myChart", {
+    type: "bar",
+    data: {
+      labels: xValues,
+      datasets: [{
+        backgroundColor: barColors,
+        data: yValues
+      },{
+          backgroundColor: barColors2,
+          data: average
+
+      }]
+    },
+    options: {
+      legend: {display: false},
+      scales: {
+          xAxes: [{
+                  display: true,
+                  scaleLabel: {
+                      display: true,
+                      labelString: 'Subject Name'
+                  }
+              }],
+          yAxes: [{
+                  display: true,
+                  ticks: {
+                      beginAtZero: true,
+                      max: 100
+                  },
+                  scaleLabel: {
+                      display: true,
+                      labelString: 'Marks'
+                  }
+              }]
+      }
+    }
+  });
+  // console.log(name,grade,section,examName,tamil,english,maths,physics,chemistry,biology)
+}
+
+// pdf generating
+$("#pdf").click(function() {
+  var pdfName = document.getElementById("nameField").value;
+  var pdf = new jsPDF("a", "mm", "a4");
+  var firstPage;
+  html2canvas($("#content"), {
+    onrendered: function(canvas) {
+      firstPage = canvas.toDataURL("image/jpeg", 1.0);
+    }
+  });
+  setTimeout(function() {
+    pdf.addImage(firstPage, "JPEG", 4, 4, 200, 220);
+    pdf.save(`${pdfName}.pdf`);
+  }, 150);
+});
+</script>
+</html>
