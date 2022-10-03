@@ -18,53 +18,95 @@
   <div class="details">
     <div class='detailsAligin'>
       <div class="markInfo">
-        <div class=''>
+        <div >
             <label >Name:</label>
             <input id='nameField' type='text' ></input>
         </div>
         <div class='localStorageSection'>
-          <div class=''>
+          <div >
             <label >Grade:</label>
             <input style="width:70px;" id='gradeField' type='text' ></input>
           </div>
-          <div class=''>
+          <div >
             <label >Section:</label>
             <input style="width:58px;" id='sectionField' type='text' ></input>
           </div>
-          <div class=''>
+          <div >
             <label >Exam name:</label>
             <input id='examNameField' type='text' ></input>
           </div>
-          <button  id='resetButton' onclick="localStorage()" type='button'>Reset</button>
+          <button id='resetButton' onclick="localStorage()" type='button'>Reset</button>
         </div>
-        <div class=''>
+        <div >
           <label >TAMIL:</label>
           <input style="width:95px;" id='tamilField' type='text' ></input>
         </div>
-        <div class=''>
+        <div>
+          <label >Grade:</label>
+          <input style="width:95px;" id='tamilFieldGrade' type='text' list="browsers"></input> 
+        </div>
+        <div >
           <label >ENGLISH:</label>
           <input id='englishField' type='text' ></input>
         </div>
-        <div class=''>
+        <div>
+          <label >Grade:</label>
+          <input style="width:95px;" id='englishFieldGrade' type='text' list="browsers"></input> 
+        </div>
+        <div >
           <label >MATHS:</label>
           <input style="width:90px;" id='mathsField' type='text' ></input>
         </div>
-        <div class=''>
+        <div>
+          <label >Grade:</label>
+          <input style="width:95px;" id='mathsFieldGrade' type='text' list="browsers"></input> 
+        </div>
+        <div >
           <label >PHYSICS:</label>
           <input style="width:78px;" id='physicsField' type='text' ></input>
         </div>
-        <div class=''>
+        <div>
+          <label >Grade:</label>
+          <input style="width:95px;" id='physicsFieldGrade' type='text' list="browsers"></input> 
+        </div>
+        <div >
           <label >CHEMISTRY:</label>
           <input style="width: 45px;" id='chemistryField' type='text' ></input>
         </div>
-        <div class=''>
+        <div>
+          <label >Grade:</label>
+          <input style="width:95px;" id='chemistryFieldGrade' type='text' list="browsers"></input> 
+        </div>
+        <div >
           <label >BIOLOGY:</label>
           <input id='biologyField' type='text' ></input>
         </div>
-        <div class=''>
+        <div>
+          <label >Grade:</label>
+          <input style="width:95px;" id='biologyFieldGrade' type='text' list="browsers"></input> 
+        </div>
+        <div >
             <button id='subButton' onclick="uniqueMarkAssign()" type='button'>Submit</button>
         </div>
     </div>
+    <datalist id="browsers">
+      <option value="A1">
+      <option value="A2">
+      <option value="B1">
+      <option value="B2">
+      <option value="C1">
+      <option value="C2">
+      <option value="D1">
+      <option value="D2">
+      <option value="E1"> 
+      <option value="E2">    
+        </option>
+
+      </option>
+      </option>
+        
+      </option>
+    </datalist>
 
 <!-- Average mark section -->
     <!-- <div>
@@ -157,43 +199,43 @@
             <td>TAMIL</td>
             <td><span id="resultTamilField"></span></td>
             <td>86</td>
-            <td></td>
+            <td><span id="resultTamilFieldGrade"></span></td>
           </tr>
           <tr>
             <td>ENGLISH</td>
             <td><span id="resultEnglishField"></span></td>
             <td>82</td>
-            <td></td>
+            <td><span id="resultEnglishFieldGrade"></span></td>
           </tr>
           <tr>
             <td>MATHS</td>
             <td><span id="resultMathsField"></span></td>
             <td>60</td>
-            <td></td>
+            <td><span id="resultMathsFieldGrade"></span></td>
           </tr>
           <tr>
             <td>PHYSICS</td>
             <td><span id="resultPhysicsField"></span></td>
             <td>42</td>
-            <td></td>
+            <td><span id="resultPhysicsFieldGrade"></span></td>
           </tr>
           <tr>
             <td>CHEMISTRY</td>
             <td><span id="resultChemistryField"></span></td>
             <td>77</td>
-            <td></td>
+            <td><span id="resultChemistryFieldGrade"></span></td>
           </tr>
           <tr>
             <td>BIOLOGY</td>
             <td><span id="resultBiologyField"></span></td>
             <td>82</td>
-            <td></td>
+            <td><span id="resultBiologyFieldGrade"></span></td>
           </tr>
           <tr>
             <td>Total(%)</td>
             <td><span id="resultTotalField"></span></td>
-            <td>71</td>
-            <td></td>
+            <td>429</td>
+            <td>A+</td>
           </tr>
         </table>
       </div>
@@ -234,7 +276,14 @@ function uniqueMarkAssign() {
   var physics = document.getElementById("physicsField").value;
   var chemistry = document.getElementById("chemistryField").value;
   var biology = document.getElementById("biologyField").value;
+  var tamilGrade = document.getElementById("tamilFieldGrade").value;
+  var englishGrade = document.getElementById("englishFieldGrade").value;
+  var mathsGrade = document.getElementById("mathsFieldGrade").value;
+  var physicsGrade = document.getElementById("physicsFieldGrade").value;
+  var chemistryGrade = document.getElementById("chemistryFieldGrade").value;
+  var biologyGrade = document.getElementById("biologyFieldGrade").value;
 
+  
   document.getElementById("resultNameField").innerHTML = name
   document.getElementById("resultGradeField").innerHTML = grade
   document.getElementById("resultSectionField").innerHTML = section
@@ -244,15 +293,23 @@ function uniqueMarkAssign() {
   document.getElementById("resultMathsField").innerHTML = maths
   document.getElementById("resultPhysicsField").innerHTML = physics
   document.getElementById("resultChemistryField").innerHTML = chemistry
-  document.getElementById("resultBiologyField").innerHTML = biology 
+  document.getElementById("resultBiologyField").innerHTML = biology
+  document.getElementById("resultTamilFieldGrade").innerHTML = tamilGrade
+  document.getElementById("resultEnglishFieldGrade").innerHTML = englishGrade
+  document.getElementById("resultMathsFieldGrade").innerHTML = mathsGrade
+  document.getElementById("resultPhysicsFieldGrade").innerHTML = physicsGrade
+  document.getElementById("resultChemistryFieldGrade").innerHTML = chemistryGrade
+  document.getElementById("resultBiologyFieldGrade").innerHTML = biologyGrade
   // console.log(name,grade,section,examName,tamil,english,maths,physics,chemistry,biology)
+  console.log(tamilGrade,englishGrade,mathsGrade,physicsGrade,chemistryGrade,biologyGrade)
+  
  
   // graph generation
   var total = Number(tamil)+Number(english)+Number(maths)+Number(physics)+Number(chemistry)+Number(biology);
   document.getElementById("resultTotalField").innerHTML = total
   var xValues = ["TAMIL", "ENGLISH", "MATHS", "PHYSICS", "CHEMISTRY", "BIOLOGY", "TOTAL(%)"];
   var yValues = [tamil, english, maths,physics,chemistry, biology, total];
-  var average = [86, 82, 60, 42, 77, 82, 71]
+  var average = [86, 82, 60, 42, 77, 82, 429]
   var barColors = ["orange", "orange","orange","orange","orange", "orange","orange"];
   var barColors2 = ["blue","blue","blue","blue","blue","blue","blue"]
   new Chart("myChart", {
